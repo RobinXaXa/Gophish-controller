@@ -588,7 +588,7 @@ def menu():
 	return menuChoice
 
 def main():
-	if len(sys.arv) <=1:
+	if len(sys.argv) <=1:
 		while 1:
 			banner()
 			menuChoice = menu()
