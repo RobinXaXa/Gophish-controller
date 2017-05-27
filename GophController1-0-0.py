@@ -164,7 +164,7 @@ def Ajout_Groupe_solo():
 	groups = Group(name=grpname, targets=Targets)
 	group = api.groups.post(groups)
 
-def Ajout_Groupe_Pos()
+def Ajout_Groupe_Pos():
 
 	nb_days = int(raw_input("sur combien de jours ouvrés va se dérouler la camgne ?: "))
 	#Nous avions dit deux campagnes par jour
