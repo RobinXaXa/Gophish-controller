@@ -462,7 +462,7 @@ def Camp_full_auto(groups):
 		garage0 = str(random.choice(parking))
 		garage = Page(name=garage0)
 		campaign  = Campaign(name=name, groups=groupe, page=garage,template=template, smtp=sender, url=urlph)
-				campaign = api.campaigns.post(campaign)
+		campaign = api.campaigns.post(campaign)
 
 def imp_grp_by_pos_auto(csvinput0):
 
