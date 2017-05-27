@@ -426,7 +426,7 @@ def AjoutCampagneFullAuto():
 			campaign  = Campaign(name=name, groups=groupe, page=garage,template=template, smtp=sender, url=urlph, launch_date=date)
 			campaign = api.campaigns.post(campaign)
 
-        elif automatchoice == '2'
+        elif automatchoice == '2':
                 AjouTCampagne_Association_sender_template()
 
 ###########################################################################################################
