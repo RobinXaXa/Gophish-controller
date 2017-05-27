@@ -286,8 +286,8 @@ def AjouTCampagne_Association_sender_template():
 	
 	#Selection de toutes les pages de garage
 	parking = []
-		for pages in api.pages.get():
-			parking.append(pages.name)
+	for pages in api.pages.get():
+		parking.append(pages.name)
 
 	groups = Ajout_Groupe_Pos() 
 
