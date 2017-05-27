@@ -674,7 +674,7 @@ def main():
 				
 			else:
 				continue
-	elif sys.argv[] == '-k':
+	elif sys.argv[1] == '-k':
 		Automation()
 				
 main()
