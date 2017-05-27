@@ -367,31 +367,31 @@ def AjoutCampagneFullAuto():
 	automatchoice =  raw_input("voulez-vous affecter les elements de campagne manuellement ou aléatoirement? 0: auto , 1: manuel, 2:semi-auto association sender/template" )
 	if automatchoice == '0':
 		for i in range(len(groups)):
-                print "Voici les element de la campagne: "
+                	print "Voici les element de la campagne: "
 
-		name = "test" + str(i)
-		print "le nom de la campagne est: ",name
-		date = datecamp[i]
-		print "date: ", date
+			name = "test" + str(i)
+			print "le nom de la campagne est: ",name
+			date = datecamp[i]
+			print "date: ", date
 
-		groupe = groups[i]
-		print "groupe: ",groupe
+			groupe = groups[i]
+			print "groupe: ",groupe
 
-		sender0 = str(random.choice(senders))
-		print "l'emmeteur des mails sera: ",sender0
-		sender = SMTP(name=sender0)
-		template0 = str(random.choice(templates))
-		print "le template utilisé pour cette campagne est: ",  template0
-		template = Template(name=template0)
+			sender0 = str(random.choice(senders))
+			print "l'emmeteur des mails sera: ",sender0
+			sender = SMTP(name=sender0)
+			template0 = str(random.choice(templates))
+			print "le template utilisé pour cette campagne est: ",  template0
+			template = Template(name=template0)
 
-		garage0 = str(random.choice(parking))
-		print "la page de parking utilisée pour cette campagne est: ",garage0
-		garage = Page(name=garage0)
-		print "l'url de tracking est: ",urlph
-		print ""
-		print ""
-	        campaign  = Campaign(name=name, groups=groupe, page=garage,template=template, smtp=sender, url=urlph, launch_date=date) 
-	        campaign = api.campaigns.post(campaign)
+			garage0 = str(random.choice(parking))
+			print "la page de parking utilisée pour cette campagne est: ",garage0
+			garage = Page(name=garage0)
+			print "l'url de tracking est: ",urlph
+			print ""
+			print ""
+	        	campaign  = Campaign(name=name, groups=groupe, page=garage,template=template, smtp=sender, url=urlph, launch_date=date) 
+	        	campaign = api.campaigns.post(campaign)
 				
 	elif automatchoice == '1':
 		for i in range(len(groups)):
