@@ -82,14 +82,14 @@ def Ajout_Template():
 	o = raw_input("Objet?: ")
 	print "utilisez vous du text(0) ou du html(1) pour le corps de votre message?"
 	choix = raw_input("Choix: 0 ou 1 ?: ")
-		if choix == '0':
-			print "veuillez saisir le corps de votre message (format texte)"
-			text = raw_input("Texte: ")
-			html = ""
-		elif choix == '1':
-			print "veuillez saisir le corps de votre message (format html)"
-			text = ""
-			html = raw_input("HTML: ")
+	if choix == '0':
+		print "veuillez saisir le corps de votre message (format texte)"
+		text = raw_input("Texte: ")
+		html = ""
+	elif choix == '1':
+		print "veuillez saisir le corps de votre message (format html)"
+		text = ""
+		html = raw_input("HTML: ")
 
 ### Probleme sur la fonction de parsing interne a Gophish creant un bug
 ### sur les pieces jointes meme si on en envoie pas
