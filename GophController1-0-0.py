@@ -122,9 +122,9 @@ def Ajout_SMTP():
 	resp = raw_input("0 ou 1?: ")
 	if resp == 1:
 		print "veulliez sasir le login"
-			usrn = raw_input ("username?: ")
-			print "veuillez saisir le mot de passe"
-			pwd = raw_inpur ("password?: ")
+		usrn = raw_input ("username?: ")
+		print "veuillez saisir le mot de passe"
+		pwd = raw_inpur ("password?: ")
 	else:
 		usrn=""
 		pwd=""
