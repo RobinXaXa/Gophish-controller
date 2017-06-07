@@ -80,8 +80,9 @@ def SupprAllGrp():
 ##########################
 
 
-##Ne pas utiliser c'est cassé
+
 def Ajout_Template():
+##Ne pas utiliser c'est cassé
 	print "Quel nom nouslez-vous donner à votre Template?"
 	n = raw_input("Nom: ")
 	print "Quel Objet voulez vous choisir pour votre template?"
@@ -516,7 +517,9 @@ def main():
 			if menu3Choice == '1':
 				ListeTemplate()
 			elif menu3Choice == '2':
-				Ajout_Template()
+				print "fonction cassée fix soon"
+				#Ajout_Template()
+				continue
 			elif menu3Choice == '3':
 				SupprTeampl()
 			else:
