@@ -148,27 +148,29 @@ def Ajout_Landing():
 
 
 def Ajout_Groupe_solo():
-	#
-	# TODO: remplissage des groupes sans loc, pour l'instant ca crée un unique groupe
-	#
 	nb_grp = int(config.get('Groups','Nb_groups'))
 	inputcsv = config.get('Groups','csvinput')
 	print "Veuillez saisir le nom du nouveau groupe, attention, gophish n'accepte pas les doublons dans les noms de groupes "
-
-	grpname = 'Groupe ' + '1'
+	
+	Grps_solo = []
+	Grp_Targets = []
+	for i in range(nb_grp):
+		grpname = 'Groupe ' + 'i'
+		Grps_solo.append(grpname)
+		Grp_Targets.append([])
+		
 	cr = csv.DictReader(open(inputcsv,"rb"))
-	Targets = []
-								
+						
 	for row in cr:
-		#print "%s %s %s %s" %(row['first_name'],row['last_name'],row['email'],row['position'])
 		x = User(first_name=row['first_name'],last_name=row['last_name'],email=row['email'],position=row['position'])
-		Targets.append(x)
-								
-	groups = Group(name=grpname, targets=Targets)
-	group = api.groups.post(groups)
+		grp_to_update = random.choice(range(nb_grp))
+		Grp_Targets[grp_to_update].append(x)
+		
+	for i in range(nb_grp)					
+		groups = Group(name=Grps_solo[i], targets=Grp_Targets[i])
+		group = api.groups.post(groups)
 
 def Ajout_Groupe_Pos():
-
 	nb_grp = int(config.get('Groups','Nb_groups'))
 	print range(nb_grp)
 
@@ -304,13 +306,6 @@ def select_campaign_options():
 	options = [datecamp,senders,templates,parking,groupselect]
 	print options
 	return options
-
-## A Suppr when done table des correspondances des options
-# 0: date
-# 1: Senders
-# 2: Template
-# 3: Parking
-# 4: groupes
 
 def AjouTCampagne_Association_sender_template(options):
 #Initialisation des differents parametres
@@ -456,7 +451,7 @@ def menu():
 
 def main():
 	attr_mod = config.get('Campaigns','Attr_mod')	
-
+	ch = config.get('Groups','attr_grp')
 	while 1:
 		banner()
 		menuChoice = menu()
@@ -494,10 +489,9 @@ def main():
 			if menu2Choice == '1':
 				ListeGroupe()
 			elif menu2Choice == '2':
-				ch = raw_input("Un groupe: O ; Position: 1 |  ")
-				if ch == '0':
-					Ajout_Groupe_solo()
-				if ch =='1':
+				if ch == 'random':
+					Ajout_Groupe_Random()
+				if ch =='localisation':
 					Ajout_Groupe_Pos()
 
 			elif menu2Choice == '3':
