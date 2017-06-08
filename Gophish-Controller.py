@@ -431,24 +431,23 @@ def Report():
 	os.system(string)
 	
 def date_creation():
-	year=int(config.get('Dates','year'))
-	month=int(config.get('Dates','month'))
-	day=int(config.get('Dates','day'))
-	nb_cmp=config.get('Dates','nb_cmp')
-	morning_wave = config.get('Dates','morning_wave')
-	afternoon_wave = config.get('Dates','afternoon_wave')
-	date_file = config.get('Dates','date_file')
-	delete_old_datefile = 'rm -f ' + date_file
-	os.system(delete_old_datefile)
-	f = open(date_file,'ar')
-	for i in range(int(nb_cmp)/2):
-		dayselect = date(year,month,day)
-		f.write(str(dayselect) + 'T' + morning_wave + '+02:00'+'\n')
-		f.write(str(dayselect)+'T'+afternoon_wave+'+02:00'+'\n')
-		day += 1
-	print "[*] fichier créé."
-	print fichier.read()
-	f.close()
+        year=int(config.get('Dates','year'))
+        month=int(config.get('Dates','month'))
+        day=int(config.get('Dates','day'))
+        nb_cmp=config.get('Dates','nb_cmp')
+        morning_wave = config.get('Dates','morning_wave')
+        afternoon_wave = config.get('Dates','afternoon_wave')
+        date_file = config.get('Dates','date_file')
+        delete_old_datefile = 'rm -f ' + date_file
+        os.system(delete_old_datefile)
+        f = open(date_file,'a')
+        for i in range(int(nb_cmp)/2):
+                dayselect = date(year,month,day)
+                f.write(str(dayselect) + 'T' + morning_wave + '+02:00'+'\n')
+                f.write(str(dayselect)+'T'+afternoon_wave+'+02:00'+'\n')
+                day += 1
+        print "[*] fichier créé."
+        f.close
 	
 ##################
 # Banner et menu #
@@ -461,7 +460,7 @@ def banner():
 	print'| |  _| | | | |_) | |_| || |\___ \| |_| |_____| |  | | | |  \| | | | | |_) | | | | |   | |   |  _| | |_) |  '
 	print'| |_| | |_| |  __/|  _  || | ___) |  _  |_____| |__| |_| | |\  | | | |  _ <  |_| | |___| |___| |___|  _ <   '
 	print' \____|\___/|_|   |_| |_|___|____/|_| |_|      \____\___/|_| \_| |_| |_| \_|\___/|_____|_____|_____|_| \_\  '
-	print''
+	print'														  '
 	print'============================================================================================================'	
 
 
