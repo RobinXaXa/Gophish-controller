@@ -421,11 +421,12 @@ def Ajout_Campagne_Manuel(options):
 # https://github.com/chrismaddalena/GoReport
 
 def Report():
+	gorepath= config.get('Goreport','goreport_path')
 	print "voici la liste des campagnes existantes: "
 	ListeCampagne()
 	idselec = raw_input("Quel est l'id de la campagne dont vous voulez generer le rapport?: ")
 	formatselec = raw_input("Quel est le format de sortie désiré?: quick, word, csv: ")
-	string = 'python GoReport.py' + ' --id ' + str(idselec) + ' --format ' + str(formatselec)
+	string = 'python '+ gorepath + ' --id ' + str(idselec) + ' --format ' + str(formatselec)
 
 	print string
 	os.system(string)
