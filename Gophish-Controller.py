@@ -305,7 +305,6 @@ def select_campaign_options():
 		groupselect.append(str(groups.name))
 
 	options = [datecamp,senders,templates,parking,groupselect]
-	print options
 	return options
 
 def AjouTCampagne_Association_sender_template(options):
