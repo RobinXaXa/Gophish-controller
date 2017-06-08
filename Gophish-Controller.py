@@ -3,7 +3,7 @@ from gophish import Gophish
 from gophish.models import *
 import csv
 import dateutil
-from datetime import datetime,timedelta
+from datetime import date,datetime,timedelta
 import random
 import base64
 import sys
