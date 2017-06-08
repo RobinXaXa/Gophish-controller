@@ -431,6 +431,7 @@ def Report():
 	os.system(string)
 	
 def date_creation():
+	# TODO: gestion des jours ouvrés
         year=int(config.get('Dates','year'))
         month=int(config.get('Dates','month'))
         day=int(config.get('Dates','day'))
