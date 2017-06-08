@@ -148,6 +148,9 @@ def Ajout_Landing():
 
 
 def Ajout_Groupe_Random():
+	#
+	# TODO: equilibrage des groupes
+	#
 	nb_grp = int(config.get('Groups','Nb_groups'))
 	inputcsv = config.get('Groups','csvinput')
 	
@@ -157,8 +160,6 @@ def Ajout_Groupe_Random():
 		grpname = 'Groupe ' + str(i)
 		Grps_solo.append(grpname)
 		Grp_Targets.append([])
-		print Grps_solo
-		print Grp_Targets
 	cr = csv.DictReader(open(inputcsv,"rb"))
 						
 	for row in cr:
@@ -166,7 +167,7 @@ def Ajout_Groupe_Random():
 		grp_to_update = random.choice(range(nb_grp))
 		print 'grp_to_update= ',grp_to_update
 		Grp_Targets[grp_to_update].append(x)
-		print Grp_Targets
+
 	for i in range(nb_grp):					
 		groups = Group(name=Grps_solo[i], targets=Grp_Targets[i])
 		group = api.groups.post(groups)
