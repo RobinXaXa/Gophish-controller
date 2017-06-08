@@ -154,7 +154,7 @@ def Ajout_Groupe_Random():
 	Grps_solo = []
 	Grp_Targets = []
 	for i in range(nb_grp):
-		grpname = 'Groupe ' + i
+		grpname = 'Groupe ' + str(i)
 		Grps_solo.append(grpname)
 		Grp_Targets.append([])
 		print Grps_solo
