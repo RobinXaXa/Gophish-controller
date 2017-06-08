@@ -429,7 +429,27 @@ def Report():
 
 	print string
 	os.system(string)
-
+	
+def date_creation():
+	year=config.get('Dates','year')
+	month=config.get('Dates','month')
+	day=config.get('Dates','day')
+	nb_camp=config.get('Dates','nb_cmp')
+	morning_wave = config.get('Dates','morning_wave')
+	afternoon_wave = config.get('Dates','afternoon_wave')
+	date_file = config.get('Dates','date_file')
+	delete_old_datefile = 'rm -f ' + date_file
+	os.system(delete_old_datefile)
+	f = open(date_file,'ar')
+	for i in range(nb_cmp):
+		dayselect = date(year,month,day)
+		f.write(str(dayselect) + 'T' + morning_wave + '+02:00'+'\n')
+		f.write(str(dayselect)+'T'+afternoon_wave+'+02:00'+'\n')
+		day += 1
+	print "[*] fichier créé."
+	print fichier.read()
+	f.close()
+	
 ##################
 # Banner et menu #
 ##################
@@ -470,8 +490,8 @@ def main():
 		if menuChoice == '1':
 			print "1)Lister les campagnes existantes"
 			print "2)Creation de campagne"
-			print "3)Création de campgne lien emmeteur/tempalte"
-			print "4)Supprimmer une campagne"
+			print "3)Supprimmer une campagne"
+			print "4)Creer un fichier de dates"
 			print ""
 			menu1Choice = raw_input("Votre choix?: ")
 			if menu1Choice == '1':
@@ -488,6 +508,8 @@ def main():
 
 			elif menu1Choice == '3':
 				SupprCamp()
+			elif menu1Choice == '4':
+				date_creation()
 			else:
 				continue
 
