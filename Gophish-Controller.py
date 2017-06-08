@@ -441,7 +441,7 @@ def date_creation():
 	delete_old_datefile = 'rm -f ' + date_file
 	os.system(delete_old_datefile)
 	f = open(date_file,'ar')
-	for i in range(nb_cmp):
+	for i in range(int(nb_cmp)/2):
 		dayselect = date(year,month,day)
 		f.write(str(dayselect) + 'T' + morning_wave + '+02:00'+'\n')
 		f.write(str(dayselect)+'T'+afternoon_wave+'+02:00'+'\n')
