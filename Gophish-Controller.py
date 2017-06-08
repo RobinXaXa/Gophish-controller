@@ -166,7 +166,7 @@ def Ajout_Groupe_solo():
 		grp_to_update = random.choice(range(nb_grp))
 		Grp_Targets[grp_to_update].append(x)
 		
-	for i in range(nb_grp)					
+	for i in range(nb_grp):					
 		groups = Group(name=Grps_solo[i], targets=Grp_Targets[i])
 		group = api.groups.post(groups)
 
