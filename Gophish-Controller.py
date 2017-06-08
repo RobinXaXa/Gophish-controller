@@ -338,7 +338,7 @@ def AjouTCampagne_Association_sender_template(options):
 		campaign  = Campaign(name=name, groups=groupe, page=fingarage,template=fintemplate, smtp=finemet, url=urlph, launch_date=date) 
 		campaign = api.campaigns.post(campaign)
 		try:
-			print 'Campagne créee, nom: ',campaign.name, 'id: ', campaign.id
+			print campaign.name, ' id: ', campaign.id
 		except:
 			print campaign.message
 
@@ -374,7 +374,7 @@ def Ajout_campagne_random_association(options):
 		campaign  = Campaign(name=name, groups=groupe, page=garage,template=template, smtp=sender, url=urlph, launch_date=date) 
 		campaign = api.campaigns.post(campaign)
 		try:
-			print 'Campagne créee, nom: ',campaign.name, 'id: ', campaign.id
+			print campaign.name, ' id: ', campaign.id
 		except:
 			print campaign.message
 
@@ -412,7 +412,7 @@ def Ajout_Campagne_Manuel(options):
 		campaign  = Campaign(name=name, groups=groupe, page=garage,template=template, smtp=sender, url=urlph, launch_date=date)
 		campaign = api.campaigns.post(campaign)
 		try:
-			print 'Campagne créee, nom: ',campaign.name, 'id: ', campaign.id
+			print campaign.name, ' id: ', campaign.id
 		except:
 			print campaign.message
 #############
