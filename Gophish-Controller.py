@@ -165,7 +165,6 @@ def Ajout_Groupe_Random():
 	for row in cr:
 		x = User(first_name=row['first_name'],last_name=row['last_name'],email=row['email'],position=row['position'])
 		grp_to_update = random.choice(range(nb_grp))
-		print 'grp_to_update= ',grp_to_update
 		Grp_Targets[grp_to_update].append(x)
 
 	for i in range(nb_grp):					
@@ -335,9 +334,13 @@ def AjouTCampagne_Association_sender_template(options):
 		fintemplate = Template(name=templateuse)
 		fingarage = Page(name=garage)
 		name = date + ' ' + groupe + ' ' +  sender + ' ' + template
-
+		
 		campaign  = Campaign(name=name, groups=groupe, page=fingarage,template=fintemplate, smtp=finemet, url=urlph, launch_date=date) 
 		campaign = api.campaigns.post(campaign)
+		try:
+			print 'Campagne créee, nom: ',campaign.name, 'id: ', campaign.id
+		except:
+			print campaign.message
 
 def Ajout_campagne_random_association(options):
 	urlph = config.get('Campaigns','urlph')
@@ -370,6 +373,10 @@ def Ajout_campagne_random_association(options):
 
 		campaign  = Campaign(name=name, groups=groupe, page=garage,template=template, smtp=sender, url=urlph, launch_date=date) 
 		campaign = api.campaigns.post(campaign)
+		try:
+			print 'Campagne créee, nom: ',campaign.name, 'id: ', campaign.id
+		except:
+			print campaign.message
 
 def Ajout_Campagne_Manuel(options):
 	urlph = config.get('Campaigns','urlph')
@@ -404,6 +411,10 @@ def Ajout_Campagne_Manuel(options):
 		print ""
 		campaign  = Campaign(name=name, groups=groupe, page=garage,template=template, smtp=sender, url=urlph, launch_date=date)
 		campaign = api.campaigns.post(campaign)
+		try:
+			print 'Campagne créee, nom: ',campaign.name, 'id: ', campaign.id
+		except:
+			print campaign.message
 #############
 # Reporting #
 #############
