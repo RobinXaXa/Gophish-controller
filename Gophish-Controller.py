@@ -434,7 +434,7 @@ def date_creation():
 	year=config.get('Dates','year')
 	month=config.get('Dates','month')
 	day=config.get('Dates','day')
-	nb_camp=config.get('Dates','nb_cmp')
+	nb_cmp=config.get('Dates','nb_cmp')
 	morning_wave = config.get('Dates','morning_wave')
 	afternoon_wave = config.get('Dates','afternoon_wave')
 	date_file = config.get('Dates','date_file')
