@@ -147,7 +147,7 @@ def Ajout_Landing():
 	page = api.pages.post(page)
 
 
-def Ajout_Groupe_solo():
+def Ajout_Groupe_Random():
 	nb_grp = int(config.get('Groups','Nb_groups'))
 	inputcsv = config.get('Groups','csvinput')
 	print "Veuillez saisir le nom du nouveau groupe, attention, gophish n'accepte pas les doublons dans les noms de groupes "
