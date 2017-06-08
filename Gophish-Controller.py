@@ -150,7 +150,6 @@ def Ajout_Landing():
 def Ajout_Groupe_Random():
 	nb_grp = int(config.get('Groups','Nb_groups'))
 	inputcsv = config.get('Groups','csvinput')
-	print "Veuillez saisir le nom du nouveau groupe, attention, gophish n'accepte pas les doublons dans les noms de groupes "
 	
 	Grps_solo = []
 	Grp_Targets = []
@@ -158,14 +157,16 @@ def Ajout_Groupe_Random():
 		grpname = 'Groupe ' + 'i'
 		Grps_solo.append(grpname)
 		Grp_Targets.append([])
-		
+		print Grps_solo
+		print Grp_Targets
 	cr = csv.DictReader(open(inputcsv,"rb"))
 						
 	for row in cr:
 		x = User(first_name=row['first_name'],last_name=row['last_name'],email=row['email'],position=row['position'])
 		grp_to_update = random.choice(range(nb_grp))
+		print 'grp_to_update= ',grp_to_update
 		Grp_Targets[grp_to_update].append(x)
-		
+		print Grp_Targets
 	for i in range(nb_grp):					
 		groups = Group(name=Grps_solo[i], targets=Grp_Targets[i])
 		group = api.groups.post(groups)
