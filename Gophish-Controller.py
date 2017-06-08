@@ -315,7 +315,7 @@ def AjouTCampagne_Association_sender_template(options):
 		date = options[0][i]
 		groupe = [Group(name=options[4][i])]
 
-		emet = random.choice(options[1])
+		emet = options[1][i]
 		  
 		emetswap = emet.split()
 
