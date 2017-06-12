@@ -437,8 +437,8 @@ def date_creation():
         month=int(config.get('Dates','month'))
         day=int(config.get('Dates','day'))
         nb_cmp=config.get('Dates','nb_cmp')
-        morning_wave = config.get('Dates','morning_wave')
-        afternoon_wave = config.get('Dates','afternoon_wave')
+        morning_wave = config.get('Dates','morning_wave').strip("'")
+        afternoon_wave = config.get('Dates','afternoon_wave').strip("'")
         date_file = config.get('Dates','date_file')
         delete_old_datefile = 'rm -f ' + date_file
         os.system(delete_old_datefile)
