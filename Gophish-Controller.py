@@ -310,26 +310,63 @@ def select_campaign_options():
 def AjouTCampagne_Association_sender_template(options):
 #Initialisation des differents parametres
 	urlph = config.get('Campaigns','urlph')
-
+	lastusedtemplate = ""
+	
 	for i in range(len(options[4])):
+		TemplatePanel = []
+		EmetPanel = []
+		
 		date = options[0][i]
 		groupe = [Group(name=options[4][i])]
-
-		emet = options[1][i]
-		  
-		emetswap = emet.split()
-
+		
+		grpswap = options[4][i].split()
+		grptag = grpswap[0]
+		
+	#Récupération des templates et emmeteurs liés au tag du groupe
+		for emet in options[1]:
+			emetswap = emet.split()
+			if emetswap[0] == grptag:
+				EmetPanel.append(emet)
+			else:
+				continue
+	
 		for template in options[2]:
 			templateswap = template.split()
-			if templateswap[0] == emetswap[0]:
-				templateuse = template
+			if templateswap[0] == grptag:
+				TemplatePanel.append(template)
+			else:
+				continue
+	#Choix du template aléatoire et non répétitif et association avec le bon emmeteur
+		
+		teplateuse = random.choice(TemplatePanel)
+		while 1:
+			if templateuse == lastusedtemplate:
+				print "Template déja utilisé pour la campagne precedente -- choix d'un autre template"
+				teplateuse = random.choice(TemplatePanel)
+			else:
+				break
+		#mise a jour du dernier template utilisé
+		lastusedtemplate = templateuse
+		
+		#Recupération du tag emmeteur dans le template utilisé
+		
+		TemplateSenderSwap = templateuse.split()
+		templateSenderTag = TemplateSenderSwap[1]
+		
+		#Affiliation de l'ammeteur au template
+		
+		for emet in EmetPanel:	
+			EmetTemplateSwap = emet.split()
+			EmetTemplateTag = EmetTemplateSwap[1]
+			if EmetTemplateTag == templateSenderTag:
+				emetuse = emet
 			else:
 				continue
 
 		garage = random.choice(options[3])
 			
 
-		finemet = SMTP(name=emet)
+		finemet = SMTP(name=emetuse)
 		fintemplate = Template(name=templateuse)
 		fingarage = Page(name=garage)
 		name = date + ' ' + groupe + ' ' +  sender + ' ' + template
