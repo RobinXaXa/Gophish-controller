@@ -343,6 +343,8 @@ def AjouTCampagne_Association_sender_template(options):
 		print "dernier template utilisé: ", lastusedtemplate
 		while 1:
 			if templateuse == lastusedtemplate:
+				print "template utilisé: ", templateuse
+				print "dernier template utilisé: ", lastusedtemplate
 				print "Template déja utilisé pour la campagne precedente -- choix d'un autre template"
 				teplateuse = random.choice(TemplatePanel)
 			else:
