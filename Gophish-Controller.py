@@ -369,7 +369,7 @@ def AjouTCampagne_Association_sender_template(options):
 		finemet = SMTP(name=emetuse)
 		fintemplate = Template(name=templateuse)
 		fingarage = Page(name=garage)
-		name = date + ' ' + groupe + ' ' +  sender + ' ' + template
+		name = options[0][i] + ' ' + options[4][i] + ' ' +  emetuse + ' ' + templateuse
 		
 		campaign  = Campaign(name=name, groups=groupe, page=fingarage,template=fintemplate, smtp=finemet, url=urlph, launch_date=date) 
 		campaign = api.campaigns.post(campaign)
