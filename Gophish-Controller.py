@@ -339,6 +339,8 @@ def AjouTCampagne_Association_sender_template(options):
 	#Choix du template aléatoire et non répétitif et association avec le bon emmeteur
 		
 		templateuse = random.choice(TemplatePanel)
+		print "template utilisé: ", tempalteuse
+		print "dernier template utilisé: ", lastusedtemplate
 		while 1:
 			if templateuse == lastusedtemplate:
 				print "Template déja utilisé pour la campagne precedente -- choix d'un autre template"
