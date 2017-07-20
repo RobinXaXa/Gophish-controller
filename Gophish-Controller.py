@@ -371,6 +371,7 @@ def AjouTCampagne_Association_sender_template(options):
 			if EmetTemplateTag == templateSenderTag and templatesenderfirsttag == EmetTemplateFirstTag :
 				emetuse = emet
 			else:
+				print "Emmeteur imcompatible, on continue"
 				continue
 
 		garage = random.choice(options[3])
