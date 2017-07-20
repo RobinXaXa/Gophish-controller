@@ -386,7 +386,7 @@ def AjouTCampagne_Association_sender_template(options):
 		print "Date de lancement: ",options[0][i]
 		
 		confirmation = raw_input("Confirmer? (o ou n): ")
-		if confirmation == y:
+		if confirmation == 'o':
 			campaign  = Campaign(name=name, groups=groupe, page=fingarage,template=fintemplate, smtp=finemet, url=urlph, launch_date=date) 
 			campaign = api.campaigns.post(campaign)
 			try:
