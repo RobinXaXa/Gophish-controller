@@ -362,6 +362,12 @@ def AjouTCampagne_Association_sender_template(options):
 			EmetTemplateSwap = emet.split()
 			EmetTemplateTag = EmetTemplateSwap[1]
 			EmetTemplateFirstTag = EmetTemplateSwap[0]
+			
+			print "1 tag emet: ",EmetTemplateFirstTag
+			print "1 tag template ",templatesenderfirsttag
+			print "2 tag emet ", templateSenderTag
+			print "2 tag template ", EmetTemplateTag
+		
 			if EmetTemplateTag == templateSenderTag and templatesenderfirsttag == EmetTemplateFirstTag :
 				emetuse = emet
 			else:
