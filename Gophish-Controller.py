@@ -355,14 +355,16 @@ def AjouTCampagne_Association_sender_template(options):
 		#Recupération du tag emmeteur dans le template utilisé
 		
 		TemplateSenderSwap = templateuse.split()
-		templateSenderTag = TemplateSenderSwap[1]
 		
+		templateSenderTag = TemplateSenderSwap[1]
+		templatesenderfirsttag = TemplateSenderSwap[0]
 		#Affiliation de l'ammeteur au template
 		
 		for emet in EmetPanel:	
 			EmetTemplateSwap = emet.split()
 			EmetTemplateTag = EmetTemplateSwap[1]
-			if EmetTemplateTag == templateSenderTag:
+			EmetTemplateFirstTag = EmetTemplateSwap[0]
+			if EmetTemplateTag == templateSenderTag and templatesenderfirsttag == EmetTemplateFirstTag :
 				emetuse = emet
 			else:
 				continue
