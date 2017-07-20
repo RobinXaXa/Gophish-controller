@@ -339,11 +339,12 @@ def AjouTCampagne_Association_sender_template(options):
 	#Choix du template aléatoire et non répétitif et association avec le bon emmeteur
 		
 		templateuse = random.choice(TemplatePanel)
-		print "template utilisé: ", templateuse
-		print "dernier template utilisé: ", lastusedtemplate
+		#debug
+		#print "template utilisé: ", templateuse
+		#print "dernier template utilisé: ", lastusedtemplate
 		while 1:
 			if templateuse == lastusedtemplate:
-				print "Template déja utilisé pour la campagne precedente -- choix d'un autre template"
+				#print "Template déja utilisé pour la campagne precedente -- choix d'un autre template"
 				templateuse = random.choice(TemplatePanel)
 			else:
 				break
@@ -362,11 +363,11 @@ def AjouTCampagne_Association_sender_template(options):
 			EmetTemplateSwap = emet.split()
 			EmetTemplateTag = EmetTemplateSwap[1]
 			EmetTemplateFirstTag = EmetTemplateSwap[0]
-			
-			print "1 tag emet: ",EmetTemplateFirstTag
-			print "1 tag template ",templatesenderfirsttag
-			print "2 tag emet ", templateSenderTag
-			print "2 tag template ", EmetTemplateTag
+			#debug
+			#print "1 tag emet: ",EmetTemplateFirstTag
+			#print "1 tag template ",templatesenderfirsttag
+			#print "2 tag emet ", templateSenderTag
+			#print "2 tag template ", EmetTemplateTag
 		
 			if EmetTemplateTag == templateSenderTag and templatesenderfirsttag == EmetTemplateFirstTag :
 				emetuse = emet
