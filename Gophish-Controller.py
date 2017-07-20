@@ -375,12 +375,26 @@ def AjouTCampagne_Association_sender_template(options):
 		fingarage = Page(name=garage)
 		name = options[0][i] + ' ' + options[4][i] + ' ' +  emetuse + ' ' + templateuse
 		
-		campaign  = Campaign(name=name, groups=groupe, page=fingarage,template=fintemplate, smtp=finemet, url=urlph, launch_date=date) 
-		campaign = api.campaigns.post(campaign)
-		try:
-			print campaign.name, ' id: ', campaign.id
-		except:
-			print campaign.message
+		
+		print "la campagnes va etre créée avec les elements suivants: "
+		print "Nom: ",name
+		print "Groupe: ",options[4][i]
+		print "Page de garage: ", garage
+		print "Template: ",templateuse
+		print "Emmeteur: ",emetuse
+		print "URL de renvoi: ", urlph
+		print "Date de lancement: ",options[0][i]
+		
+		confirmation = raw_input("Confirmer? (o ou n): ")
+		if confirmation == y:
+			campaign  = Campaign(name=name, groups=groupe, page=fingarage,template=fintemplate, smtp=finemet, url=urlph, launch_date=date) 
+			campaign = api.campaigns.post(campaign)
+			try:
+				print campaign.name, ' id: ', campaign.id
+			except:
+				print campaign.message
+		else:
+			break
 
 def Ajout_campagne_random_association(options):
 	urlph = config.get('Campaigns','urlph')
