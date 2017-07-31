@@ -24,55 +24,55 @@ urlph = config.get('Campaigns','urlph')
 #######################
 def ListeCampagne():
 	for campaign in api.campaigns.get():
-		print "Id: ", campaign.id, " Nom: ", campaign.name
+		print "Id: ", campaign.id, " Name: ", campaign.name
 
 def ListeGroupe():
 	for groups in api.groups.get():
-		print "Id: ",groups.id," Nom: ",groups.name
+		print "Id: ",groups.id," Name: ",groups.name
 
 def ListeSender():
 	for smtp in api.smtp.get():
-		print "Id: ",smtp.id," Nom: ",smtp.name
+		print "Id: ",smtp.id," Name: ",smtp.name
 
 def ListeTemplate():
 	for template in api.templates.get():
-		print "Id: ",template.id," Nom: ", template.name
+		print "Id: ",template.id," Name: ", template.name
 
 def ListeLanding():
 	for page in api.pages.get():
-		print "Id: ", page.id," Nom: ", page.name
+		print "Id: ", page.id," Name: ", page.name
 
 ##########################
 #Fonctions de suppression#
 ##########################
 def SupprCamp():
-	print " Voici la liste des campagnes existantes:"
+	print "Existing campign list: "
 	ListeCampagne()
-	camp = raw_input("Quel est la campagne à supprimer ? (id) ")
+	camp = raw_input("Input the campign ID to delete: ")
 	delete = api.groups.delete(camp)
 def SupprGrp():
-	print " Voici une liste des groupes existants:"
+	print "Existing group list: "
 	ListeGroupe()
-	grp = raw_input("Quel est le groupe a supprimer ? (id) ")
+	grp = raw_input("Input the group ID to delete: ")
 	delete = api.groups.delete(grp)
 
 def SupprTempl():
-	print " voici une liste des tempaltes existants:"
+	print "Existing tempalte list: "
 	ListeTemplate()
-	templ = raw_input("Quel est le groupe a supprimer ? (id) ")
+	templ = raw_input("Input the templte ID to delete")
 	delete = api.templates.delete(templ)
 
 def SupprSMTP():
-	print " voici une liste des senders existants:"
+	print "Existing sender list: "
 	ListeSender()
-	snd = raw_input("quel est le sender a supprimer ? (id) ")
+	snd = raw_input("Input the sender ID to delete")
 	delete = api.smtp.delete(snd)
 
 def SupprAllGrp():
-	print "[*] Purge des groupes..."
+	print "[*] deleting all groups ..."
 	for group in api.groups.get():
 		api.groups.delete(group.id)
-	print "[*] Groupes purgés"
+	print "[*] Groups deleted"
 
 
 ##########################
@@ -80,34 +80,33 @@ def SupprAllGrp():
 ##########################
 
 
-
 def Ajout_Template():
-##Ne pas utiliser c'est cassé
-	print "Quel nom nouslez-vous donner à votre Template?"
-	n = raw_input("Nom: ")
-	print "Quel Objet voulez vous choisir pour votre template?"
+##Broken function, will be fixed soon
+	print "Tempalte name: "
+	n = raw_input("Name: ")
+	print "Email Object: "
 	o = raw_input("Objet?: ")
-	print "utilisez vous du text(0) ou du html(1) pour le corps de votre message?"
-	choix = raw_input("Choix: 0 ou 1 ?: ")
-	if choix == '0':
-		print "veuillez saisir le corps de votre message (format texte)"
-		text = raw_input("Texte: ")
+	print "Will you use plaintext (0) or html (1) for the mail body?"
+	choice = raw_input("choice: 0 or 1 ?: ")
+	if choice == '0':
+		print "Input the email's body (plaintext): "
+		text = raw_input("plaintext: ")
 		html = ""
-	elif choix == '1':
-		print "veuillez saisir le corps de votre message (format html)"
+	elif choice == '1':
+		print "Input the email's body (HTML)"
 		text = ""
 		html = raw_input("HTML: ")
 
 ### Probleme sur la fonction de parsing interne a Gophish creant un bug
 ### sur les pieces jointes meme si on en envoie pas
 
-	print "Voulez-vous inserer une piece jointe dans le mail? (0 ou 1)"
-	choix = raw_input("0 ou 1")
+	print "Do you wish to add an attachment ? (0 or 1)"
+	choice = raw_input("0 or 1")
 	Attachments = []
-	if choix == '1':
-		npj = raw_input("Veuillez saisir le nom de la piece jointe: ")
-		tpj = raw_input("veuillez saisir le type du fichier: ")
-		cpj = raw_input("veuillez saisir le chemin vers le fichier a attacher: ")   
+	if choice == '1':
+		npj = raw_input("Attachment name: ")
+		tpj = raw_input("File type: ")
+		cpj = raw_input("Absolute path to the file: ")   
 		with open(cpj, "rb") as image_file:
 			encoded_string = base64.b64encode(image_file.read())
 		objAtt = Attachment(name=npj,type=tpj,content=encoded_string)
@@ -119,19 +118,14 @@ def Ajout_Template():
 
 
 def Ajout_SMTP():
-	print "Quel nom nouslez-vous donner à votre nouvel emmeteur?"
-	n = raw_input("Nom: ")
-	print "Quelle est l'adresse qui doit envoyer le mail ?"
-	f_a = raw_input ("Adresse: ")
-	print "Veuillez saisir l'adresse du serveur SMTP d'envoi."
-	h = raw_input ("Serveur: ")
-	print "votre serveur SMTP demande t'il des i nformations de connexion?"
-	resp = raw_input("0 ou 1?: ")
+	n = raw_input("Sender name: ")
+	f_a = raw_input ("Sender email: ")
+	h = raw_input ("SMTP host: ")
+	print "Does your SMTP server requires login ? (0 or 1)"
+	resp = raw_input("Choice 0 or 1?: ")
 	if resp == 1:
-		print "veulliez sasir le login"
-		usrn = raw_input ("username?: ")
-		print "veuillez saisir le mot de passe"
-		pwd = raw_inpur ("password?: ")
+		usrn = raw_input ("Login: ")
+		pwd = raw_inpur ("password: ")
 	else:
 		usrn=""
 		pwd=""
@@ -139,10 +133,10 @@ def Ajout_SMTP():
 	smtp = api.smtp.post(smtp)
 
 def Ajout_Landing():
-	print "Quel nom nouslez-vous donner à votr nouvelle page de renvoi?"
-	n = raw_input("Nom: ")
-	print "Veuillez saisir le code HTML de la page"
-	html = raw_input("Code HTML: ")
+
+	n = raw_input("Landing page name: ")
+	html = raw_input("Input page HTML code: ")
+	
 	page = Page(name=n,html=html)
 	page = api.pages.post(page)
 
@@ -279,27 +273,28 @@ def Ajout_Groupe_Pos():
 def select_campaign_options():
 #Initialisation des differents parametres
 
-	#initialisation de la table de dates
+	#date table initialisation
 	datecamp = []
 	f = open('dates','r')
 	for i in f.readlines():
 		datecamp.append(i.rstrip())
 
-	#Selection de tous les senders
+	#Selecting all senders
 	senders = []
 	for smtp in api.smtp.get():
 		senders.append(str(smtp.name))
 		
-	#Selection de tous les templates
+	#Selecting all templates
 	templates = []
 	for template in api.templates.get():
 		templates.append(str(template.name))
 
-	#Selection de toutes les pages de garage
+	#Selecting all landing pages
 	parking = []
 	for pages in api.pages.get():
 		parking.append(str(pages.name))
 
+	#Selecting all groups
 	groupselect = []
 	for groups in api.groups.get():
 		groupselect.append(str(groups.name))
@@ -344,7 +339,7 @@ def AjouTCampagne_Association_sender_template(options):
 		#print "dernier template utilisé: ", lastusedtemplate
 		while 1:
 			if templateuse == lastusedtemplate:
-				#print "Template déja utilisé pour la campagne precedente -- choix d'un autre template"
+				#print "Template déja utilisé pour la campagne precedente -- choice d'un autre template"
 				templateuse = random.choice(TemplatePanel)
 			else:
 				break
@@ -385,7 +380,7 @@ def AjouTCampagne_Association_sender_template(options):
 		
 		
 		print "la campagnes va etre créée avec les elements suivants: "
-		print "Nom: ",name
+		print "Name: ",name
 		print "Groupe: ",options[4][i]
 		print "Page de garage: ", garage
 		print "Template: ",templateuse
@@ -485,10 +480,10 @@ def Ajout_Campagne_Manuel(options):
 
 def Report():
 	gorepath= config.get('Goreport','goreport_path')
-	print "voici la liste des campagnes existantes: "
+	print "Existing campaigns: "
 	ListeCampagne()
-	idselec = raw_input("Quel est l'id de la campagne dont vous voulez generer le rapport?: ")
-	formatselec = raw_input("Quel est le format de sortie désiré?: quick, word, csv: ")
+	idselec = raw_input("Slect the campaign ID you wish to report: ")
+	formatselec = raw_input("Desired output?: quick, word, csv: ")
 	string = 'python '+ gorepath + ' --id ' + str(idselec) + ' --format ' + str(formatselec)
 
 	print string
@@ -532,17 +527,17 @@ def banner():
 
 def menu():
 	print ""
-	print "1)Gestion des campagnes"
-	print "2)Gestion des groupes et utilisateurs"
-	print "3)Gestion des modeles d'email"
-	print "4)Gestion des pages de parking"
-	print "5)Gestion des emmeteurs"
-	print "6)Reporting"
-	print "7)Quitter"
+	print "1) Campaign managment"
+	print "2) Groups and users managment"
+	print "3) Template managment"
+	print "4) Landing pages managment"
+	print "5) Sender managment"
+	print "6) Reporting"
+	print "7) Exit"
 	print "======================================================================="
 	print ""
 
-	menuChoice = raw_input( "Que voulez-vous faire? ")
+	menuChoice = raw_input( "What do you want to do ?: ")
 	return menuChoice
 
 def main():
@@ -552,12 +547,12 @@ def main():
 		banner()
 		menuChoice = menu()
 		if menuChoice == '1':
-			print "1)Lister les campagnes existantes"
-			print "2)Creation de campagne"
-			print "3)Supprimmer une campagne"
-			print "4)Creer un fichier de dates"
+			print "1) List campaigns"
+			print "2) Campaign managment"
+			print "3) Delete a campaign
+			print "4) Create a date file"
 			print ""
-			menu1Choice = raw_input("Votre choix?: ")
+			menu1Choice = raw_input("Your choice?: ")
 			if menu1Choice == '1':
 				ListeCampagne()
 			elif menu1Choice == '2':
@@ -578,12 +573,12 @@ def main():
 				continue
 
 		elif menuChoice == '2':
-			print "1)Lister les groupes existants"
-			print "2)Ajouter un/des groupes"
-			print "3)Supprimer un groupe"
-			print "4) Purger les groupes"
+			print "1) List groups"
+			print "2) Add Groups"
+			print "3) Delete one group"
+			print "4) Delete all groups"
 			print ""
-			menu2Choice = raw_input("Votre choix?: ")
+			menu2Choice = raw_input("Your choice?: ")
 			if menu2Choice == '1':
 				ListeGroupe()
 			elif menu2Choice == '2':
@@ -601,15 +596,15 @@ def main():
 
 
 		elif menuChoice == '3':
-			print "1)Lister les templates de mails existants"
-			print "2)Ajouter un template"
-			print "3)Supprimer un template"
+			print "1) List templates"
+			print "2) Add templates"
+			print "3) Delete template"
 			print ""
-			menu3Choice = raw_input("Votre choix?: ")
+			menu3Choice = raw_input("Your choice?: ")
 			if menu3Choice == '1':
 				ListeTemplate()
 			elif menu3Choice == '2':
-				print "fonction cassée fix soon"
+				print " Broken function-fix soon"
 				#Ajout_Template()
 				continue
 			elif menu3Choice == '3':
@@ -618,10 +613,10 @@ def main():
 					continue
 
 		elif menuChoice == '4':
-			print "1)Lister les pages de renvoi existantes"
-			print "2)Ajouter une page de renvoi"
+			print "1) List landing pages"
+			print "2) Add a landing page"
 			print ""
-			menu4Choice = raw_input("Votre choix?: ")
+			menu4Choice = raw_input("Your choice?: ")
 			if menu4Choice == '1':
 				ListeLanding()
 			elif menu4Choice == '2':
@@ -630,11 +625,11 @@ def main():
 				continue
 		   		
 		elif menuChoice == '5':
-			print "1)Lister les emmeteurs de mails existants"
-			print "2)Ajouter un emmeteur"
-			print "3)Supprimmer un emmeteur"
+			print "1) List sender"
+			print "2) Add sender"
+			print "3) Delete sender"
 			print ""
-			menu5Choice = raw_input("Votre choix?: ")
+			menu5Choice = raw_input("Your choice?: ")
 			if menu5Choice == '1':
 				ListeSender()
 			elif menu5Choice == '2':
@@ -655,3 +650,5 @@ def main():
 
 
 main()
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
