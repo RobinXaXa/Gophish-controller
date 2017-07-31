@@ -549,7 +549,7 @@ def main():
 		if menuChoice == '1':
 			print "1) List campaigns"
 			print "2) Campaign managment"
-			print "3) Delete a campaign
+			print "3) Delete a campaign"
 			print "4) Create a date file"
 			print ""
 			menu1Choice = raw_input("Your choice?: ")
