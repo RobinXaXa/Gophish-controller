@@ -158,7 +158,7 @@ def Ajout_Groupe_Random():
 		totalgrps = []
 		for i in range(nb_grp):
 			for j in Grp_Targets:
-				total = len(Grp_Targets[j])
+				total = len(j)
 				totalgrps.append(total)
 		nbmin = min(totalgrps)
 		grpkeymin = totalgrps.keys()[totalgrps.values().index(nbmin)]			
