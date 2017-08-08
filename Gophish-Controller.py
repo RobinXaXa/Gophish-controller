@@ -144,11 +144,13 @@ def Ajout_Landing():
 def Ajout_Groupe_Random():
         nb_grp = int(config.get('Groups','Nb_groups'))
         inputcsv = config.get('Groups','csvinput')
-
+	
+	Grps_solo = []
         Grp_Targets = []
         totalgrps = {}
         for i in range(nb_grp):
                 grpname = 'Groupe ' + str(i)
+		Grps_solo.append(grpname)
                 Grp_Targets.append([])
                 totalgrps[i] = 0
         cr = csv.DictReader(open(inputcsv,"rb"))
