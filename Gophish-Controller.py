@@ -154,27 +154,27 @@ def Ajout_Groupe_Random():
                 Grp_Targets.append([])
                 totalgrps[i] = 0
         cr = csv.DictReader(open(inputcsv,"rb"))
-        print 'totalgrps initialisé: ' ,totalgrps
+       # print 'totalgrps initialisé: ' ,totalgrps
         for row in cr:
                 x = User(first_name=row['first_name'],last_name=row['last_name'],email=row['email'],position=row['position'])
                 swap = []
 
                 for value in totalgrps.values():
-                        print value
+                  #      print value
                         swap.append(value)
 
-                print "swap: ",swap
+              #  print "swap: ",swap
                 nbmin = min(swap)
 
                 grpkeymin = totalgrps.keys()[totalgrps.values().index(nbmin)]
-                print "la clef minimale est : ", grpkeymin
+              #  print "la clef minimale est : ", grpkeymin
                 grp_to_update = grpkeymin
                 Grp_Targets[grp_to_update].append(x)
 
-                print "grptoupdate", grp_to_update
-                print "totalgrps avant incrm: ", totalgrps
+              #  print "grptoupdate", grp_to_update
+              #  print "totalgrps avant incrm: ", totalgrps
                 totalgrps[grp_to_update]+=1
-                print 'apres increm', totalgrps
+              #  print 'apres increm', totalgrps
         for i in range(nb_grp):
                 groups = Group(name=Grps_solo[i], targets=Grp_Targets[i])
                 group = api.groups.post(groups)
