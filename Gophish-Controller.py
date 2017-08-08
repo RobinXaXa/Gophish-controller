@@ -142,32 +142,41 @@ def Ajout_Landing():
 
 
 def Ajout_Groupe_Random():
-	nb_grp = int(config.get('Groups','Nb_groups'))
-	inputcsv = config.get('Groups','csvinput')
-	
-	Grps_solo = []
-	Grp_Targets = []
-	for i in range(nb_grp):
-		grpname = 'Groupe ' + str(i)
-		Grps_solo.append(grpname)
-		Grp_Targets.append([])
-	cr = csv.DictReader(open(inputcsv,"rb"))
-						
-	for row in cr:
-		x = User(first_name=row['first_name'],last_name=row['last_name'],email=row['email'],position=row['position'])
-		totalgrps = []
-		for i in range(nb_grp):
-			for j in Grp_Targets:
-				total = len(j)
-				totalgrps.append(total)
-		nbmin = min(totalgrps)
-		grpkeymin = totalgrps.keys()[totalgrps.values().index(nbmin)]			
-		grp_to_update = grpkeymin
-		Grp_Targets[grp_to_update].append(x)
+        nb_grp = int(config.get('Groups','Nb_groups'))
+        inputcsv = config.get('Groups','csvinput')
 
-	for i in range(nb_grp):					
-		groups = Group(name=Grps_solo[i], targets=Grp_Targets[i])
-		group = api.groups.post(groups)
+        Grp_Targets = []
+        totalgrps = {}
+        for i in range(nb_grp):
+                grpname = 'Groupe ' + str(i)
+                Grp_Targets.append([])
+                totalgrps[i] = 0
+        cr = csv.DictReader(open(inputcsv,"rb"))
+        print 'totalgrps initialisé: ' ,totalgrps
+        for row in cr:
+                x = User(first_name=row['first_name'],last_name=row['last_name'],email=row['email'],position=row['position'])
+                swap = []
+
+                for value in totalgrps.values():
+                        print value
+                        swap.append(value)
+
+                print "swap: ",swap
+                nbmin = min(swap)
+
+                grpkeymin = totalgrps.keys()[totalgrps.values().index(nbmin)]
+                print "la clef minimale est : ", grpkeymin
+                grp_to_update = grpkeymin
+                Grp_Targets[grp_to_update].append(x)
+
+                print "grptoupdate", grp_to_update
+                print "totalgrps avant incrm: ", totalgrps
+                totalgrps[grp_to_update]+=1
+                print 'apres increm', totalgrps
+        for i in range(nb_grp):
+                groups = Group(name=Grps_solo[i], targets=Grp_Targets[i])
+                group = api.groups.post(groups)
+
 
 def Ajout_Groupe_Pos():
 	nb_grp = int(config.get('Groups','Nb_groups'))
