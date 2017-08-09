@@ -191,7 +191,8 @@ def Ajout_Groupe_Pos():
 	GrpTargets=[]
 	Targets=[]
 	Repartition_groupes=[]
-		
+	Repartition_users = []	
+	
 	cr = csv.DictReader(open(csvinput,"rb"))
 		
 	##Initialisation des dictionnaires
@@ -199,6 +200,9 @@ def Ajout_Groupe_Pos():
 		#print ("groupe"+str(i))
 		GrpTargets.append("groupe"+str(i))
 		GrpTargets[i] = list()
+		Repartition_users.append("groupe"+str(i))
+		Repartition_users[i] = list()
+		
 		print GrpTargets
 		Repartition_groupes.append("groupe"+str(i))
 		Repartition_groupes[i] = dict()
@@ -269,10 +273,13 @@ def Ajout_Groupe_Pos():
 
 
 		Repartition_groupes[grp_to_update][curloc]+=1
+		
+		u= row['first_name']," ", row['last_name']," ",row['email']," "," ",row['position'])
 		y = User(first_name=row['first_name'],last_name=row['last_name'],email=row['email'],position=row['position'])
 		GrpTargets[grp_to_update].append(y)
-								
-		groups = []		
+		Repartition_users[grp_to_update].append(u)					
+		groups = []
+	print Repartition_users
 	for z in range(nb_grp):
 		print ("voici la composition du groupe: ", z)
 		print Repartition_groupes[z]
