@@ -274,10 +274,20 @@ def Ajout_Groupe_Pos():
 
 		Repartition_groupes[grp_to_update][curloc]+=1
 		
-		u= row['first_name']," ", row['last_name']," ",row['email']," "," ",row['position'])
+		
 		y = User(first_name=row['first_name'],last_name=row['last_name'],email=row['email'],position=row['position'])
 		GrpTargets[grp_to_update].append(y)
-		Repartition_users[grp_to_update].append(u)					
+		u= row['first_name'] + " " + row['last_name']+" "+row['email']
+                Repartition_users[grp_to_update].append(u)
+
+        f = open("repartition_grp.txt","a")
+        for i in range(nb_grp):
+                f.write("groupe: " + str(i)+": ")
+                f.write(str(Repartition_users[i]))
+                f.write("\n")
+
+		
+		
 		groups = []
 	print Repartition_users
 	for z in range(nb_grp):
