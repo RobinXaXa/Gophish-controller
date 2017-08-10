@@ -613,16 +613,23 @@ def main():
 			menu2Choice = raw_input("Your choice?: ")
 			if menu2Choice == '1':
 				ListeGroupe()
+				raw_input("press enter to continue")
 			elif menu2Choice == '2':
 				if ch == 'random':
 					Ajout_Groupe_Random()
+					raw_input("press enter to continue")
+
 				if ch =='localisation':
 					Ajout_Groupe_Pos()
+					raw_input("press enter to continue")
+
 
 			elif menu2Choice == '3':
 				SupprGrp()
+				raw_input("press enter to continue")
 			elif menu2Choice == '4':
 				SupprAllGrp()
+				raw_input("press enter to continue")
 			else:
 				continue
 
@@ -635,12 +642,14 @@ def main():
 			menu3Choice = raw_input("Your choice?: ")
 			if menu3Choice == '1':
 				ListeTemplate()
+				raw_input("press enter to continue")
 			elif menu3Choice == '2':
 				print " Broken function-fix soon"
 				#Ajout_Template()
 				continue
 			elif menu3Choice == '3':
 				SupprTeampl()
+				raw_input("press enter to continue")
 			else:
 					continue
 
@@ -651,8 +660,10 @@ def main():
 			menu4Choice = raw_input("Your choice?: ")
 			if menu4Choice == '1':
 				ListeLanding()
+				raw_input("press enter to continue")
 			elif menu4Choice == '2':
 				Ajout_Landing()
+				raw_input("press enter to continue")
 			else:
 				continue
 		   		
@@ -664,16 +675,19 @@ def main():
 			menu5Choice = raw_input("Your choice?: ")
 			if menu5Choice == '1':
 				ListeSender()
+				raw_input("press enter to continue")
 			elif menu5Choice == '2':
 				Ajout_SMTP()
+				raw_input("press enter to continue")
 			elif menu5Choice == '3':
-				SupprSMTP()		
+				SupprSMTP()
+				raw_input("press enter to continue")
 			else:
 				continue
 
 		elif menuChoice == '6':
 			Report()
-
+			raw_input("press enter to continue")
 		elif menuChoice == '7':
 			break
 	
