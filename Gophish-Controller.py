@@ -587,20 +587,29 @@ def main():
 			menu1Choice = raw_input("Your choice?: ")
 			if menu1Choice == '1':
 				ListeCampagne()
+				raw_input("press enter to continue")
+
 			elif menu1Choice == '2':
 				if attr_mod == 'manuel':
 					Ajout_Campagne_Manuel(select_campaign_options())
+					raw_input("press enter to continue")
 
 				elif attr_mod == 'auto':
 					Ajout_campagne_random_association(select_campaign_options())
+					raw_input("press enter to continue")
 
 				elif attr_mod == 'tag':
 					AjouTCampagne_Association_sender_template(select_campaign_options())
+					raw_input("press enter to continue")
 
 			elif menu1Choice == '3':
 				SupprCamp()
+				raw_input("press enter to continue")
+
 			elif menu1Choice == '4':
 				date_creation()
+				raw_input("press enter to continue")
+
 			else:
 				continue
 
